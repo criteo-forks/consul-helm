@@ -28,6 +28,9 @@ spec:
       annotations:
         "consul.hashicorp.com/connect-inject": "false"
     spec:
+      {{- if .Values.syncCatalog.hostNetwork }}
+      hostNetwork: {{ .Values.syncCatalog.hostNetwork }}
+      {{- end }}
       serviceAccountName: {{ template "consul.fullname" . }}-sync-catalog
       {{- if .Values.global.tls.enabled }}
       volumes:
@@ -61,6 +64,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+            {{- if .Values.syncCatalog.aclClearToken }}
+            - name: CONSUL_HTTP_TOKEN
+              value: {{ .Values.syncCatalog.aclClearToken }}
+            {{- end }}
             {{- if (and .Values.syncCatalog.aclSyncToken.secretName .Values.syncCatalog.aclSyncToken.secretKey) }}
             - name: CONSUL_HTTP_TOKEN
               valueFrom:
@@ -100,6 +107,7 @@ spec:
             - |
               consul-k8s sync-catalog \
                 -k8s-default-sync={{ .Values.syncCatalog.default }} \
+                -http-addr={{ .Values.syncCatalog.consulApiAddr }} \
                 {{- if (not .Values.syncCatalog.toConsul) }}
                 -to-consul=false \
                 {{- end }}

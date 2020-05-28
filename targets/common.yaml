@@ -1,0 +1,23 @@
+global:
+  enabled: false
+  datacenter: unused
+
+syncCatalog:
+  consulApiAddr: 127.0.0.85:8500
+  enabled: true
+  logLevel: info
+  image: null
+  default: false
+  hostNetwork: true
+  toConsul: true
+  toK8S: false
+  k8sPrefix: null
+  consulPrefix: null
+  addK8SNamespaceSuffix: false
+  syncClusterIPServices: true
+  nodePortSyncType: ExternalFirst
+  aclClearToken: null
+  aclSyncToken:
+    secretName: null
+    secretKey: null
+  nodeSelector: null
