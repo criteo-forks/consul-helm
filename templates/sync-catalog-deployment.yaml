@@ -107,6 +107,7 @@ spec:
             - |
               consul-k8s sync-catalog \
                 -k8s-default-sync={{ .Values.syncCatalog.default }} \
+                -listen=:{{ .Values.syncCatalog.listenPort }} \
                 -http-addr={{ .Values.syncCatalog.consulApiAddr }} \
                 {{- if (not .Values.syncCatalog.toConsul) }}
                 -to-consul=false \
@@ -167,7 +168,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /health/ready
-              port: 8080
+              port: {{ .Values.syncCatalog.listenPort }}
               scheme: HTTP
             failureThreshold: 3
             initialDelaySeconds: 30
@@ -177,7 +178,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /health/ready
-              port: 8080
+              port: {{ .Values.syncCatalog.listenPort }}
               scheme: HTTP
             failureThreshold: 5
             initialDelaySeconds: 10

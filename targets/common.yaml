@@ -4,6 +4,7 @@ global:
 
 syncCatalog:
   consulApiAddr: 127.0.0.85:8500
+  listenPort: 8880
   enabled: true
   logLevel: info
   image: null
