@@ -224,4 +224,8 @@ spec:
       nodeSelector:
         {{ tpl .Values.syncCatalog.nodeSelector . | indent 8 | trim }}
       {{- end }}  
+      {{- if .Values.syncCatalog.tolerations }}
+      tolerations:
+        {{ toYaml .Values.syncCatalog.tolerations | indent 8 | trim }}
+      {{- end }}
 {{- end }}

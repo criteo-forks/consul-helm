@@ -22,3 +22,7 @@ syncCatalog:
     secretName: null
     secretKey: null
   nodeSelector: null
+  tolerations:
+  - key: "node-role.kubernetes.io/master"
+    operator: "Exists"
+    effect: "NoSchedule"
