@@ -123,7 +123,7 @@ spec:
             - "/bin/sh"
             - "-ec"
             - |
-              consul-k8s sync-catalog \
+              consul-k8s-control-plane sync-catalog \
                 -k8s-default-sync={{ .Values.syncCatalog.default }} \
                 -listen=:{{ .Values.syncCatalog.listenPort }} \
                 -http-addr={{ .Values.syncCatalog.consulApiAddr }} \
