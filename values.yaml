@@ -42,7 +42,8 @@ global:
   #   imagePullSecrets:
   #   - name: pull-secret-name
   #   - name: pull-secret-name-2
-  imagePullSecrets: []
+  imagePullSecrets:
+    - name: regcred
 
   # imageK8S is the name (and tag) of the consul-k8s Docker image that
   # is used for functionality such as catalog sync. This can be overridden
@@ -53,7 +54,7 @@ global:
   # If using acls.manageSystemACLs then must be >= 0.10.1.
   # If using connect inject then must be >= 0.10.1.
   # If using Consul Enterprise namespaces, must be >= 0.12.
-  imageK8S: "hashicorp/consul-k8s-control-plane:0.45.0"
+  imageK8S: "filer-docker-registry.prod.crto.in/hashicorp/consul-k8s-control-plane:0.45.0"
 
   # datacenter is the name of the datacenter that the agents should register
   # as. This can't be changed once the Consul cluster is up and running
