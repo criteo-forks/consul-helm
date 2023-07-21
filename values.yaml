@@ -582,6 +582,9 @@ syncCatalog:
   # prepended with "consul-". (Consul -> Kubernetes sync)
   k8sPrefix: null
 
+  # consulApiTimeout is the timeout for the Consul Client
+  consulApiTimeout: 120s
+
   # k8sAllowNamespaces is a list of k8s namespaces to sync the k8s services from.
   # If a k8s namespace is not included  in this list or is listed in `k8sDenyNamespaces`,
   # services in that k8s namespace will not be synced even if they are explicitly
